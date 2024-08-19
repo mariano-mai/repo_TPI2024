@@ -1,7 +1,7 @@
 #cosas
 .project
 .classpath
-.settings/
+*.settings/
 
 #Compilación
 *.class
