@@ -1,0 +1,10 @@
+#cosas
+.project
+.classpath
+.settings
+
+#Compilación
+*.class
+
+#carpetas
+D:\Documentos\Mariano\Informatorio\Cosas Maven 2024\TPI2024\CocinaYGastronomia\target
