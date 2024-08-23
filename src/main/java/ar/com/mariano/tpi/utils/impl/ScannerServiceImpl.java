@@ -6,6 +6,7 @@ import ar.com.mariano.tpi.utils.ScannerService;
 
 public class ScannerServiceImpl implements ScannerService{
 	
+	public static ScannerService scannerService;
 	Scanner entrada;
 
 	@Override

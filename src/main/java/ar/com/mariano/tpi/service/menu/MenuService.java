@@ -1,4 +1,4 @@
-package ar.com.mariano.tpi.service;
+package ar.com.mariano.tpi.service.menu;
 
 public interface MenuService {
 	
