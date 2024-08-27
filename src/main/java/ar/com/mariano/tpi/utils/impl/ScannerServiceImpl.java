@@ -6,14 +6,14 @@ import ar.com.mariano.tpi.utils.ScannerService;
 
 public class ScannerServiceImpl implements ScannerService{
 	
-	public static ScannerService scannerService;
+	public static ScannerService scannerService = new ScannerServiceImpl();
 	Scanner entrada;
 
 	@Override
 	public String entradaDeTexto() {
 		entrada = new Scanner(System.in);
 		String texto = entrada.nextLine();
-		entrada.close();
+		
 		return texto;
 	}
 
@@ -21,7 +21,7 @@ public class ScannerServiceImpl implements ScannerService{
 	public int entradaDeNumero() {
 		entrada = new Scanner(System.in);
 		int numero = entrada.nextInt();
-		entrada.close();
+		
 		return numero;
 	}
 
@@ -29,7 +29,7 @@ public class ScannerServiceImpl implements ScannerService{
 	public Long entradaDeNumeroLong() {
 		entrada = new Scanner(System.in);
 		Long numero = entrada.nextLong();
-		entrada.close();
+		
 		return numero;
 	}
 

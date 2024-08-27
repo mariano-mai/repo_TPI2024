@@ -1,6 +1,6 @@
 package ar.com.mariano.tpi.domain;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -10,8 +10,8 @@ public class Evento {
 	private UUID idEvento;
 	private String nombre;
 	private String descripcion;
-	private LocalDate fechaYHora;
-	private Ubicacion ubicacion;
+	private LocalDateTime fechaYHora;
+	private String ubicacion;
 	private int capacidad;
 	private Chef chefACargo;
 	private List<Resenia> resenias = new ArrayList<>();
@@ -22,7 +22,7 @@ public class Evento {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Evento(UUID idEvento, String nombre, String descripcion, LocalDate fechaYHora, Ubicacion ubicacion,
+	public Evento(UUID idEvento, String nombre, String descripcion, LocalDateTime fechaYHora, String ubicacion,
 			int capacidad, Chef chefACargo) {
 		super();
 		this.idEvento = idEvento;
@@ -58,19 +58,19 @@ public class Evento {
 		this.descripcion = descripcion;
 	}
 
-	public LocalDate getFechaYHora() {
+	public LocalDateTime getFechaYHora() {
 		return fechaYHora;
 	}
 
-	public void setFechaYHora(LocalDate fechaYHora) {
+	public void setFechaYHora(LocalDateTime fechaYHora) {
 		this.fechaYHora = fechaYHora;
 	}
 
-	public Ubicacion getUbicacion() {
+	public String getUbicacion() {
 		return ubicacion;
 	}
 
-	public void setUbicacion(Ubicacion ubicacion) {
+	public void setUbicacion(String ubicacion) {
 		this.ubicacion = ubicacion;
 	}
 
@@ -106,5 +106,14 @@ public class Evento {
 		this.participante = participante;
 	}
 	
+	@Override
+	public String toString() {
+		StringBuilder stringBuilder = new StringBuilder();
+		return stringBuilder.append("Id: ").append(this.idEvento)
+					 .append("Nombre: ").append(this.getNombre())
+					 //.append("Fecha y Hora: ").append(this.getFechaYHora().toString())
+					 .append("Capacidad: ").append(this.getCapacidad())
+					 .toString();
+	}
 
 }
