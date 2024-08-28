@@ -111,7 +111,7 @@ public class Evento {
 		StringBuilder stringBuilder = new StringBuilder();
 		return stringBuilder.append("Id: ").append(this.idEvento)
 					 .append("Nombre: ").append(this.getNombre())
-					 //.append("Fecha y Hora: ").append(this.getFechaYHora().toString())
+					 .append("Fecha y Hora: ").append(this.getFechaYHora().getDayOfMonth()+"/"+this.getFechaYHora().getMonth()+" - "+this.getFechaYHora().getHour()+":"+this.getFechaYHora().getMinute())
 					 .append("Capacidad: ").append(this.getCapacidad())
 					 .toString();
 	}
