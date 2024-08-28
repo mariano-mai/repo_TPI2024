@@ -41,8 +41,9 @@ public class ListadoYBusquedaImpl implements ListadoYBusqueda{
 	public Evento buscarEvento(Map<UUID, Evento> eventos) {
 		Map<Integer, Evento> mapaTemporal = new HashMap<>();
 		Evento eventoSeleccionado = new Evento();
+		System.out.println("Selección del Evento");
 		System.out.println("Ingrese primer letra del nombre del evento: ");
-		String letra = ScannerServiceImpl.scannerService.entradaDeTexto();
+		String letra = ScannerServiceImpl.scannerService.entradaDeTexto().toUpperCase();
 		int i = 1;
 		for(Map.Entry<UUID, Evento> evento : eventos.entrySet()) {
 			if(evento.getValue().getNombre().startsWith(letra)) {
@@ -67,15 +68,14 @@ public class ListadoYBusquedaImpl implements ListadoYBusqueda{
 	public void gestionarEvento(Evento evento) {
 		int opcion;
 		do {
-			System.out.println("¿Qué desea hacer?");
-			System.out.println("1- Cambiar horario.\n2- Ver información.\n0- Salir de este menú.");
+			System.out.println("\n1- Cambiar horario del Evento.\n2- Ver información del Evento.\n0- Salir de este menú.");
 			opcion = ScannerServiceImpl.scannerService.entradaDeNumero();
 			switch(opcion) {
 				case 1:
 					evento.setFechaYHora(hora());
 					break;
 				case 2:
-					evento.toString();
+					System.out.println(evento.toString());;
 					break;
 				default:
 			}
@@ -96,6 +96,30 @@ public class ListadoYBusquedaImpl implements ListadoYBusqueda{
 		int minutos = ScannerServiceImpl.scannerService.entradaDeNumero();
 		LocalDateTime horario = LocalDateTime.of(anio, mes, dia, hora, minutos);
 		return horario;
+	}
+
+	public Map<UUID, Participante> getParticipantes() {
+		return participantes;
+	}
+
+	public void setParticipantes(Map<UUID, Participante> participantes) {
+		this.participantes = participantes;
+	}
+
+	public Map<UUID, Evento> getEventos() {
+		return eventos;
+	}
+
+	public void setEventos(Map<UUID, Evento> eventos) {
+		this.eventos = eventos;
+	}
+
+	public Map<UUID, Chef> getChefs() {
+		return chefs;
+	}
+
+	public void setChefs(Map<UUID, Chef> chefs) {
+		this.chefs = chefs;
 	}
 
 	

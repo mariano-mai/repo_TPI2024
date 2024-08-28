@@ -17,7 +17,7 @@ public class MenuServiceImpl implements MenuService {
 		int opcion;
 		do {
 			System.out.println("elija opcion:");
-			System.out.println("1- Crear Evento.\n"+
+			System.out.println("1- Gestionar Eventos.\n"+
 							   "2- opcion 2.\n"+
 							   "3- opcion 3.\n"+
 							   "4- opcion 4.\n"+
@@ -27,7 +27,7 @@ public class MenuServiceImpl implements MenuService {
 			opcion = sc.nextInt();
 			switch(opcion) {
 				case 1:
-					EventoServiceImpl.eventoService.crearEvento();
+					MostrarOpcionesEvento.opcionesEvento.mostrarOpciones();
 					break;
 				case 2:
 					//inscribir participantes
