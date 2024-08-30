@@ -35,8 +35,9 @@ public class ChefServiceImpl implements ChefService{
 
 	@Override
 	public void asignar(Chef chef) {
-		// TODO Auto-generated method stub
-		
+		Evento evento = ListadoYBusquedaImpl.listado.buscarEvento(ListadoYBusquedaImpl.listado.getEventos());
+		evento.setChefACargo(chef);
+		System.out.println("El chef "+chef.getNombre()+" se asignó correctamente al evento "+evento.getNombre()+".");
 	}
 	
 	private List<Evento> listarEventos(){

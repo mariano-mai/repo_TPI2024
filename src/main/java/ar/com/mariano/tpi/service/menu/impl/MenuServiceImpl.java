@@ -21,7 +21,7 @@ public class MenuServiceImpl implements MenuService {
 			System.out.println("MENÚ PRINCIPAL\nElija una opción:");
 			System.out.println("1- Gestionar Eventos.\n"+
 							   "2- Gestionar Participantes.\n"+
-							   "3- opcion 3.\n"+
+							   "3- Gestionar Chefs.\n"+
 							   "4- opcion 4.\n"+
 							   "5- opcion 5.\n"+
 							   "6- opcion 6.\n"+
@@ -35,7 +35,7 @@ public class MenuServiceImpl implements MenuService {
 					MostrarOpcionesParticipantes.opcParticipantes.mostrarOpciones();
 					break;
 				case 3:
-					//gestión de chefs
+					MostrarOpcionesChef.opcChef.mostrarOpciones();
 					break;
 				case 4:
 					//reseñas de eventos

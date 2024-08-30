@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.UUID;
 
 import ar.com.mariano.tpi.bootstrap.BootstrapData;
+import ar.com.mariano.tpi.domain.Chef;
 import ar.com.mariano.tpi.domain.Evento;
 import ar.com.mariano.tpi.domain.Participante;
 import ar.com.mariano.tpi.service.listado.impl.ListadoYBusquedaImpl;
+import ar.com.mariano.tpi.utils.impl.TiemposImpl;
 
 public class BootstrapDataImpl implements BootstrapData{
 	
@@ -17,6 +19,8 @@ public class BootstrapDataImpl implements BootstrapData{
 	Evento nuevoEvento;
 	
 	Participante nuevoParticipante;
+	
+	Chef nuevoChef;
 	
 	List<Evento> eventos = new ArrayList<>();
 
@@ -89,13 +93,37 @@ public class BootstrapDataImpl implements BootstrapData{
 	
 	private List<Evento> listarEventos(){
 		List<Evento> eventos2 = new ArrayList<>();
-		for(Evento evento : eventos) {
-			int i = getRandomNumber(1, 10);
-			if(i%2==0) {
-				eventos2.add(evento);
+		for(Evento evento : ListadoYBusquedaImpl.listado.getEventos().values()) {
+			if(TiemposImpl.tiempo.ocurrioAntes(evento.getFechaYHora())) {
+				int i = getRandomNumber(1, 10);
+				if(i%2==0) {
+					eventos2.add(evento);
+				}
 			}
 		}
 		return eventos2;
 	}
+
+	@Override
+	public Chef crearChefBD() {
+		nuevoChef = new Chef();
+		nuevoChef.setIdChef(UUID.randomUUID());
+		nuevoChef.setNombre(BootstrapData.NOMBRES[getRandomNumber(0, 90)]);
+		nuevoChef.setEspecialidad("Este bot cocina rico");
+		nuevoChef.setEventos(listarEventos());
+		ListadoYBusquedaImpl.listado.mapearChef(nuevoChef);
+		System.out.println("Chef añadido con éxito.");
+		System.out.println(nuevoChef.toString());
+		mostrarEventos(nuevoChef);
+		return nuevoChef;
+	}
+	
+	private void mostrarEventos(Chef chef) {
+		System.out.println("Eventos en los que participa:");
+		for(Evento evento : chef.getEventos()) {
+			System.out.println("- "+evento.getNombre()+"("+evento.getFechaYHora().getDayOfMonth()+"/"+evento.getFechaYHora().getMonthValue()+"/"+evento.getFechaYHora().getYear()+")");
+		}
+	}
+
 
 }

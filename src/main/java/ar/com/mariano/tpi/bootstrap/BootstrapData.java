@@ -1,5 +1,6 @@
 package ar.com.mariano.tpi.bootstrap;
 
+import ar.com.mariano.tpi.domain.Chef;
 import ar.com.mariano.tpi.domain.Participante;
 
 public interface BootstrapData {
@@ -9,6 +10,8 @@ public interface BootstrapData {
 	void setearEventoBD();
 	
 	Participante crearParticipanteBD();
+	
+	Chef crearChefBD();
 	
 	final String[] NOMBRES = {"Hugo", "Mateo", "Martín", "Lucas", "Leo", "Daniel", "Alejandro", "Manuel", "Pablo", "Álvaro", "Adrián",
 			"Enzo", "Mario", "Diego", "David", "Oliver", "Marcos", "Thiago", "Marco", "Álex", "Javier", "Izan", "Bruno", "Miguel",

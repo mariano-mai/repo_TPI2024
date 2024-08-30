@@ -59,7 +59,7 @@ public class Chef {
 	@Override
 	public String toString() {
 		StringBuilder strB = new StringBuilder();
-		return strB.append("NOMRBE: ").append(this.getNombre())
+		return strB.append("NOMBRE: ").append(this.getNombre())
 				   .append("\nESPECIALIDAD: ").append(this.getEspecialidad())
 				   .toString();
 	}
