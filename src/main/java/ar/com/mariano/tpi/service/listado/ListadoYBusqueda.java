@@ -18,5 +18,9 @@ public interface ListadoYBusqueda {
 	Evento buscarEvento(Map<UUID, Evento> eventos);
 	
 	void gestionarEvento(Evento evento);
+	
+	Participante buscarParticipante(Map<UUID, Participante> participantes);
+	
+	Chef buscarChef(Map<UUID, Chef> chefs);
 
 }

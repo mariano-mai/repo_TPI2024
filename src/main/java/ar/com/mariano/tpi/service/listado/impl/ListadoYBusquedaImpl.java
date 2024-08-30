@@ -41,7 +41,7 @@ public class ListadoYBusquedaImpl implements ListadoYBusqueda{
 	public Evento buscarEvento(Map<UUID, Evento> eventos) {
 		Map<Integer, Evento> mapaTemporal = new HashMap<>();
 		Evento eventoSeleccionado = new Evento();
-		System.out.println("Selección del Evento");
+		System.out.println("\nSelección del Evento");
 		System.out.println("Ingrese primer letra del nombre del evento: ");
 		String letra = ScannerServiceImpl.scannerService.entradaDeTexto().toUpperCase();
 		int i = 1;
@@ -51,13 +51,15 @@ public class ListadoYBusquedaImpl implements ListadoYBusqueda{
 				i++;
 			}
 		}
-		if(i == 1) {
-			System.out.println("No se encontraron coincidencias.");
-		}else {
+		if(i != 1) {
 			System.out.println("Seleccione el evento: ");
 			for(Map.Entry<Integer, Evento> evento : mapaTemporal.entrySet()) {
-				System.out.println(evento.getKey()+"- "+evento.getValue().getNombre());
+				System.out.println(evento.getKey()+"- "+evento.getValue().getNombre()+"_("+evento.getValue().getCapacidad()+" lugares disponibles)");
 			}
+			
+		}else if(i == 1){
+			System.out.println("No se encontraron coincidencias.");
+			//MenuServiceImpl.menu.mostrarMenu();
 		}
 		int valor = ScannerServiceImpl.scannerService.entradaDeNumero();
 		eventoSeleccionado = mapaTemporal.get(valor);
@@ -66,21 +68,7 @@ public class ListadoYBusquedaImpl implements ListadoYBusqueda{
 
 	@Override
 	public void gestionarEvento(Evento evento) {
-		int opcion;
-		do {
-			System.out.println("\n1- Cambiar horario del Evento.\n2- Ver información del Evento.\n0- Salir de este menú.");
-			opcion = ScannerServiceImpl.scannerService.entradaDeNumero();
-			switch(opcion) {
-				case 1:
-					evento.setFechaYHora(hora());
-					break;
-				case 2:
-					System.out.println(evento.toString());;
-					break;
-				default:
-			}
-		}while (opcion != 0);
-		
+		evento.setFechaYHora(hora());	
 	}
 	
 	private LocalDateTime hora() {
@@ -120,6 +108,41 @@ public class ListadoYBusquedaImpl implements ListadoYBusqueda{
 
 	public void setChefs(Map<UUID, Chef> chefs) {
 		this.chefs = chefs;
+	}
+
+	@Override
+	public Participante buscarParticipante(Map<UUID, Participante> participantes) {
+		Map<Integer, Participante> mapaTemporal = new HashMap<>();
+		Participante parti = new Participante();
+		System.out.println("\nSelección del Participante");
+		System.out.println("Ingrese primer letra del apellido del participante: ");
+		String letra = ScannerServiceImpl.scannerService.entradaDeTexto().toUpperCase();
+		int i = 1;
+		for(Map.Entry<UUID, Participante> participante : participantes.entrySet()) {
+			if(participante.getValue().getApellido().startsWith(letra)) {
+				mapaTemporal.put(i, participante.getValue());
+				i++;
+			}
+		}
+		if(i != 1) {
+			System.out.println("Seleccione el participante: ");
+			for(Map.Entry<Integer, Participante> participante : mapaTemporal.entrySet()) {
+				System.out.println(participante.getKey()+"- "+participante.getValue().getApellido()+", "+participante.getValue().getNombre());
+			}
+			
+		}else if(i == 1){
+			System.out.println("No se encontraron coincidencias.");
+			//MenuServiceImpl.menu.mostrarMenu();
+		}
+		int valor = ScannerServiceImpl.scannerService.entradaDeNumero();
+		parti = mapaTemporal.get(valor);
+		return parti;
+	}
+
+	@Override
+	public Chef buscarChef(Map<UUID, Chef> chefs) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import ar.com.mariano.tpi.enumerators.InteresesCulinariosEnum;
 
 public class Participante {
 	
 	private UUID idParticipante;
 	private String nombre;
 	private String apellido;
-	private InteresesCulinariosEnum interesesCulinarios;
+	private String interesesCulinarios;
 	private List<Evento> historialEventos = new ArrayList<>();
 	
 	public Participante() {
@@ -20,7 +19,7 @@ public class Participante {
 	}
 
 	public Participante(UUID idParticipante, String nombre, String apellido,
-			InteresesCulinariosEnum interesesCulinarios, List<Evento> historialEventos) {
+			String interesesCulinarios, List<Evento> historialEventos) {
 		super();
 		this.idParticipante = idParticipante;
 		this.nombre = nombre;
@@ -53,11 +52,11 @@ public class Participante {
 		this.apellido = apellido;
 	}
 
-	public InteresesCulinariosEnum getInteresesCulinarios() {
+	public String getInteresesCulinarios() {
 		return interesesCulinarios;
 	}
 
-	public void setInteresesCulinarios(InteresesCulinariosEnum interesesCulinarios) {
+	public void setInteresesCulinarios(String interesesCulinarios) {
 		this.interesesCulinarios = interesesCulinarios;
 	}
 
@@ -69,6 +68,13 @@ public class Participante {
 		this.historialEventos = historialEventos;
 	}
 	
-	
+	@Override
+	public String toString() {
+		StringBuilder strB = new StringBuilder();
+		return strB.append("NOMBRE: ").append(this.getNombre())
+				   .append("\nAPELLIDO: ").append(this.getApellido())
+				   .append("\nINTERÉS: ").append(this.getInteresesCulinarios())
+				   .toString();
+	}
 
 }

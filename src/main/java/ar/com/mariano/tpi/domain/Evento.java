@@ -110,9 +110,10 @@ public class Evento {
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
 		return stringBuilder.append("Id: ").append(this.idEvento)
-					 .append("Nombre: ").append(this.getNombre())
-					 .append("Fecha y Hora: ").append(this.getFechaYHora().getDayOfMonth()+"/"+this.getFechaYHora().getMonth()+" - "+this.getFechaYHora().getHour()+":"+this.getFechaYHora().getMinute())
-					 .append("Capacidad: ").append(this.getCapacidad())
+					 .append("\nNombre: ").append(this.getNombre())
+					 .append("\nFecha y Hora: ").append(this.getFechaYHora().getDayOfMonth()+"/"+this.getFechaYHora().getMonth()+" - "+this.getFechaYHora().getHour()+":"+this.getFechaYHora().getMinute())
+					 .append("\nDirección: ").append(this.getUbicacion())
+					 .append("\nCapacidad: ").append(this.getCapacidad())
 					 .toString();
 	}
 

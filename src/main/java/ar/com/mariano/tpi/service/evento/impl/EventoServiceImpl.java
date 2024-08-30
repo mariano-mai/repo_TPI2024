@@ -26,9 +26,8 @@ public class EventoServiceImpl implements EventoService {
 		System.out.println("CANTIDAD DE PARTICIPANTES: ");
 		nuevoEvento.setCapacidad(ScannerServiceImpl.scannerService.entradaDeNumero());
 		ListadoYBusquedaImpl.listado.mapearEvento(nuevoEvento);
-		System.out.println("evento "+nuevoEvento.getNombre()+ " creado por éxito.");
-		System.out.println("será el día "+nuevoEvento.getFechaYHora().getDayOfMonth()+" de "+nuevoEvento.getFechaYHora().getMonth());
-		System.out.println("a las "+nuevoEvento.getFechaYHora().getHour()+":"+nuevoEvento.getFechaYHora().getMinute());
+		System.out.println("Evento creado por éxito.");
+		System.out.println(nuevoEvento.toString());
 		return nuevoEvento;
 	}
 
