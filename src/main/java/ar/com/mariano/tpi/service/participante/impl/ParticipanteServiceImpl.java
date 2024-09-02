@@ -47,7 +47,7 @@ public class ParticipanteServiceImpl implements ParticipanteService{
 			opcion = ScannerServiceImpl.scannerService.entradaDeNumero();
 			switch(opcion) {
 			case 1:
-				listaTemp.add(ListadoYBusquedaImpl.listado.buscarEventoFuturo(ListadoYBusquedaImpl.listado.getEventos()));
+				listaTemp.add(ListadoYBusquedaImpl.listado.buscarEvento(ListadoYBusquedaImpl.listado.getEventos()));
 				break;
 			default:
 			}
