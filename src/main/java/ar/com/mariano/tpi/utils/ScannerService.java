@@ -8,6 +8,8 @@ public interface ScannerService {
 	
 	Long entradaDeNumeroLong();
 	
+	Double entradaDeNumeroD();
+	
 	boolean esONoEs(int valor);
 
 }

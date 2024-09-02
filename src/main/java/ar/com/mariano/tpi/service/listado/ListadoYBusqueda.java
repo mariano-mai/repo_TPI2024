@@ -6,6 +6,7 @@ import java.util.UUID;
 import ar.com.mariano.tpi.domain.Chef;
 import ar.com.mariano.tpi.domain.Evento;
 import ar.com.mariano.tpi.domain.Participante;
+import ar.com.mariano.tpi.domain.Resenia;
 
 public interface ListadoYBusqueda {
 	
@@ -23,8 +24,6 @@ public interface ListadoYBusqueda {
 	
 	Chef buscarChef(Map<UUID, Chef> chefs);
 	
-	Evento buscarEventoPasado(Map<UUID, Evento> eventos);
-	
-	Evento buscarEventoFuturo(Map<UUID, Evento> eventos);
+	Resenia buscarResenia(Evento evento);
 
 }

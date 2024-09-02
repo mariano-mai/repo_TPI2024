@@ -22,7 +22,7 @@ public class MenuServiceImpl implements MenuService {
 			System.out.println("1- Gestionar Eventos.\n"+
 							   "2- Gestionar Participantes.\n"+
 							   "3- Gestionar Chefs.\n"+
-							   "4- opcion 4.\n"+
+							   "4- Gestionar Reseñas.\n"+
 							   "5- opcion 5.\n"+
 							   "6- opcion 6.\n"+
 							   "0- salir.");
@@ -38,7 +38,7 @@ public class MenuServiceImpl implements MenuService {
 					MostrarOpcionesChef.opcChef.mostrarOpciones();
 					break;
 				case 4:
-					//reseñas de eventos
+					MostrarOpcionesResenia.opcRes.mostrarOpciones();
 					break;
 				case 5:
 					//funcionalidades de listado

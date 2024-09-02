@@ -42,4 +42,11 @@ public class ScannerServiceImpl implements ScannerService{
 		return esHabilitado;
 	}
 
+	@Override
+	public Double entradaDeNumeroD() {
+		entrada = new Scanner(System.in);
+		Double numero = entrada.nextDouble();
+		return numero;
+	}
+
 }

@@ -8,12 +8,12 @@ import java.util.UUID;
 import ar.com.mariano.tpi.domain.Chef;
 import ar.com.mariano.tpi.domain.Evento;
 import ar.com.mariano.tpi.domain.Participante;
+import ar.com.mariano.tpi.domain.Resenia;
 import ar.com.mariano.tpi.service.listado.ListadoYBusqueda;
 import ar.com.mariano.tpi.service.menu.impl.MostrarOpcionesChef;
 import ar.com.mariano.tpi.service.menu.impl.MostrarOpcionesEvento;
 import ar.com.mariano.tpi.service.menu.impl.MostrarOpcionesParticipantes;
 import ar.com.mariano.tpi.utils.impl.ScannerServiceImpl;
-import ar.com.mariano.tpi.utils.impl.TiemposImpl;
 
 public class ListadoYBusquedaImpl implements ListadoYBusqueda{
 	
@@ -173,62 +173,17 @@ public class ListadoYBusquedaImpl implements ListadoYBusqueda{
 	}
 
 	@Override
-	public Evento buscarEventoPasado(Map<UUID, Evento> eventos) {
-		Map<Integer, Evento> mapaTemporal = new HashMap<>();
-		Evento eventoSeleccionado = new Evento();
-		System.out.println("\nSelección del Evento");
-		System.out.println("Ingrese primer letra del nombre del evento: ");
-		String letra = ScannerServiceImpl.scannerService.entradaDeTexto().toUpperCase();
-		int i = 1;
-		for(Map.Entry<UUID, Evento> evento : eventos.entrySet()) {
-			if(evento.getValue().getNombre().startsWith(letra) && TiemposImpl.tiempo.ocurrioAntes(evento.getValue().getFechaYHora())) {
-				mapaTemporal.put(i, evento.getValue());
-				i++;
+	public Resenia buscarResenia(Evento evento) {
+		Resenia resenia = new Resenia();
+		Participante participante1 = ListadoYBusquedaImpl.listado.buscarParticipante(participantes);
+		for(Resenia resenia1 : evento.getResenias()) {
+			if(resenia1.getParticipante().equals(participante1)) {
+				resenia = resenia1;
 			}
 		}
-		if(i != 1) {
-			System.out.println("Seleccione el evento: ");
-			for(Map.Entry<Integer, Evento> evento : mapaTemporal.entrySet()) {
-				System.out.println(evento.getKey()+"- "+evento.getValue().getNombre()+"_("+evento.getValue().getCapacidad()+" lugares disponibles)");
-			}
-			
-		}else if(i == 1){
-			System.out.println("No se encontraron coincidencias.");
-			//MenuServiceImpl.menu.mostrarMenu();
-		}
-		int valor = ScannerServiceImpl.scannerService.entradaDeNumero();
-		eventoSeleccionado = mapaTemporal.get(valor);
-		return eventoSeleccionado;
+		return resenia;
 	}
-
-	@Override
-	public Evento buscarEventoFuturo(Map<UUID, Evento> eventos) {
-		Map<Integer, Evento> mapaTemporal = new HashMap<>();
-		Evento eventoSeleccionado = new Evento();
-		System.out.println("\nSelección del Evento");
-		System.out.println("Ingrese primer letra del nombre del evento: ");
-		String letra = ScannerServiceImpl.scannerService.entradaDeTexto().toUpperCase();
-		int i = 1;
-		for(Map.Entry<UUID, Evento> evento : eventos.entrySet()) {
-			if(evento.getValue().getNombre().startsWith(letra) && !TiemposImpl.tiempo.ocurrioAntes(evento.getValue().getFechaYHora())) {
-				mapaTemporal.put(i, evento.getValue());
-				i++;
-			}
-		}
-		if(i != 1) {
-			System.out.println("Seleccione el evento: ");
-			for(Map.Entry<Integer, Evento> evento : mapaTemporal.entrySet()) {
-				System.out.println(evento.getKey()+"- "+evento.getValue().getNombre()+"_("+evento.getValue().getCapacidad()+" lugares disponibles)");
-			}
-			
-		}else if(i == 1){
-			System.out.println("No se encontraron coincidencias.");
-			//MenuServiceImpl.menu.mostrarMenu();
-		}
-		int valor = ScannerServiceImpl.scannerService.entradaDeNumero();
-		eventoSeleccionado = mapaTemporal.get(valor);
-		return eventoSeleccionado;
-	}
-
+	
+	
 	
 }

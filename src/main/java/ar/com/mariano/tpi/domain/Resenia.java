@@ -1,5 +1,7 @@
 package ar.com.mariano.tpi.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Resenia {
@@ -9,19 +11,11 @@ public class Resenia {
 	private Participante participante;
 	private Double calificacion;
 	private String comentario;
+	private List<Integer> puntos = new ArrayList<>();
 	
 	public Resenia() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	public Resenia(UUID idResenia, Evento evento, Participante participante, Double calificacion, String comentario) {
-		super();
-		this.idResenia = idResenia;
-		this.evento = evento;
-		this.participante = participante;
-		this.calificacion = calificacion;
-		this.comentario = comentario;
 	}
 
 	public UUID getIdResenia() {
@@ -63,7 +57,22 @@ public class Resenia {
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
 	}
+
+	public List<Integer> getPuntos() {
+		return puntos;
+	}
+
+	public void setPuntos(List<Integer> puntos) {
+		this.puntos = puntos;
+	}
 	
-	
+	@Override
+	public String toString() {
+		StringBuilder strB = new StringBuilder();
+		return strB.append("PARTICIPANTE: ").append(this.participante.getApellido()+", "+this.participante.getNombre())
+				   .append("CALIFICACIÓN: ").append(this.calificacion)
+				   .append("COMENTARIO: ").append(this.comentario)
+				   .toString();
+	}
 
 }
