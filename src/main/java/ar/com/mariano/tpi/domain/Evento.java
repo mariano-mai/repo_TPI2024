@@ -15,6 +15,7 @@ public class Evento {
 	private int capacidad;
 	private Chef chefACargo;
 	private List<Resenia> resenias = new ArrayList<>();
+	private Double calificacion;
 	private List<Participante> participante = new ArrayList<>();
 	
 	public Evento() {
@@ -22,17 +23,6 @@ public class Evento {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Evento(UUID idEvento, String nombre, String descripcion, LocalDateTime fechaYHora, String ubicacion,
-			int capacidad, Chef chefACargo) {
-		super();
-		this.idEvento = idEvento;
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.fechaYHora = fechaYHora;
-		this.ubicacion = ubicacion;
-		this.capacidad = capacidad;
-		this.chefACargo = chefACargo;
-	}
 
 	public UUID getIdEvento() {
 		return idEvento;
@@ -106,11 +96,22 @@ public class Evento {
 		this.participante = participante;
 	}
 	
+	public Double getCalificacion() {
+		return calificacion;
+	}
+
+
+	public void setCalificacion(Double calificacion) {
+		this.calificacion = calificacion;
+	}
+
+
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
 		return stringBuilder.append("Id: ").append(this.idEvento)
 					 .append("\nNombre: ").append(this.getNombre())
+					 .append("\nCalificación: ").append(this.calificacion)
 					 .append("\nFecha y Hora: ").append(this.getFechaYHora().getDayOfMonth()+"/"+this.getFechaYHora().getMonth()+" - "+this.getFechaYHora().getHour()+":"+this.getFechaYHora().getMinute())
 					 .append("\nDirección: ").append(this.getUbicacion())
 					 .append("\nCapacidad: ").append(this.getCapacidad())

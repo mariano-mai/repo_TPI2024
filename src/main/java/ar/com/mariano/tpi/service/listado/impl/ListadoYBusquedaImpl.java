@@ -1,7 +1,9 @@
 package ar.com.mariano.tpi.service.listado.impl;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -22,6 +24,7 @@ public class ListadoYBusquedaImpl implements ListadoYBusqueda{
 	private Map<UUID, Participante> participantes = new HashMap<>();
 	private Map<UUID, Evento> eventos = new HashMap<>();
 	private Map<UUID, Chef> chefs = new HashMap<>();
+	Resenia resenia;
 
 	@Override
 	public void mapearParticipante(Participante participante) {
@@ -174,11 +177,16 @@ public class ListadoYBusquedaImpl implements ListadoYBusqueda{
 
 	@Override
 	public Resenia buscarResenia(Evento evento) {
-		Resenia resenia = new Resenia();
+		
+		List<Resenia> listaOpiniones = new ArrayList<>();
 		Participante participante1 = ListadoYBusquedaImpl.listado.buscarParticipante(participantes);
 		for(Resenia resenia1 : evento.getResenias()) {
-			if(resenia1.getParticipante().equals(participante1)) {
-				resenia = resenia1;
+			listaOpiniones.add(resenia1);
+			
+		}
+		for(Resenia res2 : listaOpiniones) {
+			if(res2.getParticipante().equals(participante1)) {
+				resenia = res2;
 			}
 		}
 		return resenia;
