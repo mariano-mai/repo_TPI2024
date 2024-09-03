@@ -1,0 +1,21 @@
+1- gestión de eventos
+	1- crear evento
+	2- cambiar fecha y horario de un evento
+	3- ver información de un evento
+	0- volver a menú principal
+2- gestión de participantes
+	1- agregar participante
+	2- inscribir participante
+	3- crear bot participante
+	4- remover participante
+	0- volver a menú principal
+3- gestión de chefs
+	1- crear chef
+	2- asignar a evento
+	3- crear bot chef
+	0- volver a menú principal
+4- gestión de reseñas
+	1- escribir reseña
+	2- editar reseña
+	3- eliminar reseña
+	0- volver a menú principal
