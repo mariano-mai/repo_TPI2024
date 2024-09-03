@@ -4,7 +4,7 @@ package ar.com.mariano.tpi.service.menu.impl;
 
 import java.util.Scanner;
 
-
+import ar.com.mariano.tpi.service.listado.impl.ListadoYBusquedaImpl;
 import ar.com.mariano.tpi.service.menu.MenuService;
 
 
@@ -23,7 +23,7 @@ public class MenuServiceImpl implements MenuService {
 							   "2- Gestionar Participantes.\n"+
 							   "3- Gestionar Chefs.\n"+
 							   "4- Gestionar Reseñas.\n"+
-							   "5- opcion 5.\n"+
+							   "5- Mostrar eventos próximos.\n"+
 							   "6- opcion 6.\n"+
 							   "0- salir.");
 			opcion = sc.nextInt();
@@ -41,7 +41,8 @@ public class MenuServiceImpl implements MenuService {
 					MostrarOpcionesResenia.opcRes.mostrarOpciones();
 					break;
 				case 5:
-					//funcionalidades de listado
+					System.out.println("Próximos eventos:");
+					ListadoYBusquedaImpl.listado.listadoCronologico(ListadoYBusquedaImpl.listado.getEventos());
 					break;
 				case 6:
 					//exportar archivo

@@ -191,7 +191,21 @@ public class ListadoYBusquedaImpl implements ListadoYBusqueda{
 		}
 		return resenia;
 	}
+
+	@Override
+	public void listadoCronologico(Map<UUID, Evento> eventos) {
+		
+		for(Map.Entry<UUID, Evento> evento : eventos.entrySet()) {
+			if(evento.getValue().getFechaYHora().isAfter(LocalDateTime.now())) {
+				System.out.println(mostrarFechas(evento.getValue())+" - "+evento.getValue().getNombre());
+			}
+		}
+		System.out.println("\n");
+	}
 	
-	
+	private String mostrarFechas(Evento evento) {
+		String fecha = evento.getFechaYHora().getDayOfMonth()+"/"+evento.getFechaYHora().getMonth()+"/"+evento.getFechaYHora().getYear();
+		return fecha;
+	}
 	
 }

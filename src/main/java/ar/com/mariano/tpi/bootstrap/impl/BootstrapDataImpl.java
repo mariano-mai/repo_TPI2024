@@ -58,7 +58,7 @@ public class BootstrapDataImpl implements BootstrapData{
 	private LocalDateTime hora() {
 		int dia = getRandomNumber(1, 28);
 		int mes = getRandomNumber(1, 12);
-		int anio = getRandomNumber(1990, 2025);
+		int anio = getRandomNumber(1990, 2050);
 		int hora = getRandomNumber(9, 19);
 		int minutos = getRandomNumber(0, 12)*5;
 		LocalDateTime horario = LocalDateTime.of(anio, mes, dia, hora, minutos);

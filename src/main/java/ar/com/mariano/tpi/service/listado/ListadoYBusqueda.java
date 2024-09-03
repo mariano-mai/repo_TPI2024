@@ -25,5 +25,7 @@ public interface ListadoYBusqueda {
 	Chef buscarChef(Map<UUID, Chef> chefs);
 	
 	Resenia buscarResenia(Evento evento);
+	
+	void listadoCronologico(Map<UUID, Evento> eventos);
 
 }
