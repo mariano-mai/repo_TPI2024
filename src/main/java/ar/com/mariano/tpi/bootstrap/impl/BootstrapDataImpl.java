@@ -10,6 +10,7 @@ import ar.com.mariano.tpi.domain.Chef;
 import ar.com.mariano.tpi.domain.Evento;
 import ar.com.mariano.tpi.domain.Participante;
 import ar.com.mariano.tpi.service.listado.impl.ListadoYBusquedaImpl;
+import ar.com.mariano.tpi.service.listado.listado.impl.ListadoInterfaceImpl;
 import ar.com.mariano.tpi.utils.impl.TiemposImpl;
 
 public class BootstrapDataImpl implements BootstrapData{
@@ -22,19 +23,21 @@ public class BootstrapDataImpl implements BootstrapData{
 	
 	Chef nuevoChef;
 	
-	List<Evento> eventos = new ArrayList<>();
+	List<Evento> eventos;
 
 	@Override
 	public void crearEventoBD() {
 		for(int i=0; i<20; i++) {
+			eventos = new ArrayList<>();
 			nuevoEvento = new Evento();
 			nuevoEvento.setIdEvento(UUID.randomUUID());
-			nuevoEvento.setCapacidad(getRandomNumber(2, 20));
+			nuevoEvento.setCapacidad(getRandomNumber(2, 10));
 			nuevoEvento.setNombre(generarNombre(nuevoEvento.getCapacidad()));
 			nuevoEvento.setFechaYHora(hora());
 			nuevoEvento.setUbicacion(generarDireccion());
 			nuevoEvento.setDescripcion("descripción de este evento");
 			ListadoYBusquedaImpl.listado.mapearEvento(nuevoEvento);
+			ListadoInterfaceImpl.listados.listarEventos(nuevoEvento);
 			eventos.add(nuevoEvento);
 		}
 		
