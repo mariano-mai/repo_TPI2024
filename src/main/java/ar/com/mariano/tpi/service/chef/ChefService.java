@@ -6,6 +6,6 @@ public interface ChefService {
 	
 	Chef crearChef();
 	
-	void asignar(Chef chef);
+	void asignarChefAEvento();
 
 }

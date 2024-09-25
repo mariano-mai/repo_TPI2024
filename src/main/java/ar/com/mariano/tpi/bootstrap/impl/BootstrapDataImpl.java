@@ -9,8 +9,9 @@ import ar.com.mariano.tpi.bootstrap.BootstrapData;
 import ar.com.mariano.tpi.domain.Chef;
 import ar.com.mariano.tpi.domain.Evento;
 import ar.com.mariano.tpi.domain.Participante;
+import ar.com.mariano.tpi.service.chef.mapeochef.MapeoChefInterface;
+import ar.com.mariano.tpi.service.chef.mapeochef.impl.MapeoChefImpl;
 import ar.com.mariano.tpi.service.evento.mapeoevento.impl.MapeoEventoImpl;
-import ar.com.mariano.tpi.service.listado.impl.ListadoYBusquedaImpl;
 import ar.com.mariano.tpi.service.listado.listado.impl.ListadoInterfaceImpl;
 import ar.com.mariano.tpi.service.participante.mapeoparticipante.impl.MapeoParticipanteImpl;
 import ar.com.mariano.tpi.utils.impl.TiemposImpl;
@@ -26,6 +27,8 @@ public class BootstrapDataImpl implements BootstrapData{
 	Chef nuevoChef;
 	
 	List<Evento> eventos;
+	
+	MapeoChefInterface mapeoChef = new MapeoChefImpl();
 
 	@Override
 	public void crearEventoBD() {
@@ -67,7 +70,8 @@ public class BootstrapDataImpl implements BootstrapData{
 		nuevoChef.setNombre(BootstrapData.NOMBRES[getRandomNumber(0, 90)]);
 		nuevoChef.setEspecialidad("Este bot cocina rico");
 		nuevoChef.setEventos(listarEventos());
-		ListadoYBusquedaImpl.listado.mapearChef(nuevoChef);
+		mapeoChef.mapearChef(nuevoChef);
+		//ListadoYBusquedaImpl.listado.mapearChef(nuevoChef);
 		System.out.println("Chef añadido con éxito.");
 		System.out.println(nuevoChef.toString());
 		mostrarEventos(nuevoChef);

@@ -2,7 +2,6 @@ package ar.com.mariano.tpi.service.menu.impl;
 
 import ar.com.mariano.tpi.bootstrap.impl.BootstrapDataImpl;
 import ar.com.mariano.tpi.service.chef.impl.ChefServiceImpl;
-import ar.com.mariano.tpi.service.listado.impl.ListadoYBusquedaImpl;
 import ar.com.mariano.tpi.service.menu.MostrarOpciones;
 import ar.com.mariano.tpi.utils.impl.ScannerServiceImpl;
 
@@ -22,7 +21,7 @@ public class MostrarOpcionesChef implements MostrarOpciones{
 					ChefServiceImpl.chef.crearChef();
 					break;
 				case 2:
-					ChefServiceImpl.chef.asignar(ListadoYBusquedaImpl.listado.buscarChef(ListadoYBusquedaImpl.listado.getChefs()));
+					ChefServiceImpl.chef.asignarChefAEvento();
 					break;
 				case 3:
 					BootstrapDataImpl.bootStrap.crearChefBD();

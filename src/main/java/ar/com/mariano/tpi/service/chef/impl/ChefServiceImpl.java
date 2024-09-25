@@ -7,12 +7,18 @@ import java.util.UUID;
 import ar.com.mariano.tpi.domain.Chef;
 import ar.com.mariano.tpi.domain.Evento;
 import ar.com.mariano.tpi.service.chef.ChefService;
+import ar.com.mariano.tpi.service.chef.busquedachef.BusquedaChefInterface;
+import ar.com.mariano.tpi.service.chef.busquedachef.impl.BusquedaChefImpl;
+import ar.com.mariano.tpi.service.evento.busquedaevento.BusquedaEventoInterface;
+import ar.com.mariano.tpi.service.evento.busquedaevento.impl.BusquedaEventoImpl;
 import ar.com.mariano.tpi.service.listado.impl.ListadoYBusquedaImpl;
 import ar.com.mariano.tpi.utils.impl.ScannerServiceImpl;
 
 public class ChefServiceImpl implements ChefService{
 	
 	public static ChefService chef = new ChefServiceImpl();
+	BusquedaEventoInterface buscarEvento = new BusquedaEventoImpl();
+	BusquedaChefInterface buscarChef = new BusquedaChefImpl();
 	
 	Chef nuevoChef;
 
@@ -34,8 +40,13 @@ public class ChefServiceImpl implements ChefService{
 	}
 
 	@Override
-	public void asignar(Chef chef) {
-		Evento evento = ListadoYBusquedaImpl.listado.buscarEvento(ListadoYBusquedaImpl.listado.getEventos());
+	public void asignarChefAEvento() {
+		asignarChefAEvento(buscarChef.buscarChef());
+	}
+	
+	private void asignarChefAEvento(Chef chef) {
+		Evento evento = buscarEvento.buscarEvento();
+		//Evento evento = ListadoYBusquedaImpl.listado.buscarEvento(ListadoYBusquedaImpl.listado.getEventos());
 		evento.setChefACargo(chef);
 		System.out.println("El chef "+chef.getNombre()+" se asignó correctamente al evento "+evento.getNombre()+".");
 	}
@@ -48,7 +59,8 @@ public class ChefServiceImpl implements ChefService{
 			opcion = ScannerServiceImpl.scannerService.entradaDeNumero();
 			switch(opcion) {
 			case 1:
-				Evento nuevoEvento = ListadoYBusquedaImpl.listado.buscarEvento(ListadoYBusquedaImpl.listado.getEventos());
+				Evento nuevoEvento = buscarEvento.buscarEvento();
+				//Evento nuevoEvento = ListadoYBusquedaImpl.listado.buscarEvento(ListadoYBusquedaImpl.listado.getEventos());
 				listaTemp.add(nuevoEvento);
 				nuevoEvento.setChefACargo(nuevoChef);
 				break;
