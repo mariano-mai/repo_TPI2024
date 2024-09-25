@@ -8,6 +8,6 @@ public interface ParticipanteService {
 	
 	void inscribir();
 	
-	void remover(Participante participante);
+	void remover();
 
 }

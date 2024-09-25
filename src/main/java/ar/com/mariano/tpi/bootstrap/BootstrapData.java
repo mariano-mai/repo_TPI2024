@@ -7,8 +7,6 @@ public interface BootstrapData {
 	
 	void crearEventoBD();
 	
-	void setearEventoBD();
-	
 	Participante crearParticipanteBD();
 	
 	Chef crearChefBD();

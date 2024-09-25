@@ -12,6 +12,7 @@ import ar.com.mariano.tpi.domain.Participante;
 import ar.com.mariano.tpi.service.evento.mapeoevento.impl.MapeoEventoImpl;
 import ar.com.mariano.tpi.service.listado.impl.ListadoYBusquedaImpl;
 import ar.com.mariano.tpi.service.listado.listado.impl.ListadoInterfaceImpl;
+import ar.com.mariano.tpi.service.participante.mapeoparticipante.impl.MapeoParticipanteImpl;
 import ar.com.mariano.tpi.utils.impl.TiemposImpl;
 
 public class BootstrapDataImpl implements BootstrapData{
@@ -38,17 +39,39 @@ public class BootstrapDataImpl implements BootstrapData{
 			nuevoEvento.setUbicacion(generarDireccion());
 			nuevoEvento.setDescripcion("descripción de este evento");
 			MapeoEventoImpl.eventos.put(nuevoEvento.getIdEvento(), nuevoEvento);
-			ListadoYBusquedaImpl.listado.mapearEvento(nuevoEvento);
+			//ListadoYBusquedaImpl.listado.mapearEvento(nuevoEvento);
 			ListadoInterfaceImpl.listados.listarEventos(nuevoEvento);
 			eventos.add(nuevoEvento);
 		}
 		
 	}
-
+	
 	@Override
-	public void setearEventoBD() {
-		// TODO Auto-generated method stub
-		
+	public Participante crearParticipanteBD() {
+		nuevoParticipante = new Participante();
+		nuevoParticipante.setIdParticipante(UUID.randomUUID());
+		nuevoParticipante.setNombre(BootstrapData.NOMBRES[getRandomNumber(0, 90)]);
+		nuevoParticipante.setApellido(BootstrapData.APELLIDOS[getRandomNumber(0, 90)]);
+		nuevoParticipante.setInteresesCulinarios("a este bot le interesa cocinar");
+		nuevoParticipante.setHistorialEventos(listarEventos());
+		MapeoParticipanteImpl.participantes.put(nuevoParticipante.getIdParticipante(), nuevoParticipante);
+		//ListadoYBusquedaImpl.listado.mapearParticipante(nuevoParticipante);
+		System.out.println(nuevoParticipante.toString());
+		return nuevoParticipante;
+	}
+	
+	@Override
+	public Chef crearChefBD() {
+		nuevoChef = new Chef();
+		nuevoChef.setIdChef(UUID.randomUUID());
+		nuevoChef.setNombre(BootstrapData.NOMBRES[getRandomNumber(0, 90)]);
+		nuevoChef.setEspecialidad("Este bot cocina rico");
+		nuevoChef.setEventos(listarEventos());
+		ListadoYBusquedaImpl.listado.mapearChef(nuevoChef);
+		System.out.println("Chef añadido con éxito.");
+		System.out.println(nuevoChef.toString());
+		mostrarEventos(nuevoChef);
+		return nuevoChef;
 	}
 	
 	private String generarNombre(int capacidad) {
@@ -83,22 +106,9 @@ public class BootstrapDataImpl implements BootstrapData{
 		return camino+dir+" "+altura;
 	}
 
-	@Override
-	public Participante crearParticipanteBD() {
-		nuevoParticipante = new Participante();
-		nuevoParticipante.setIdParticipante(UUID.randomUUID());
-		nuevoParticipante.setNombre(BootstrapData.NOMBRES[getRandomNumber(0, 90)]);
-		nuevoParticipante.setApellido(BootstrapData.APELLIDOS[getRandomNumber(0, 90)]);
-		nuevoParticipante.setInteresesCulinarios("a este bot le interesa cocinar");
-		nuevoParticipante.setHistorialEventos(listarEventos());
-		ListadoYBusquedaImpl.listado.mapearParticipante(nuevoParticipante);
-		System.out.println(nuevoParticipante.toString());
-		return nuevoParticipante;
-	}
-	
 	private List<Evento> listarEventos(){
 		List<Evento> eventos2 = new ArrayList<>();
-		for(Evento evento : ListadoYBusquedaImpl.listado.getEventos().values()) {
+		for(Evento evento : MapeoEventoImpl.eventos.values()) {
 			if(TiemposImpl.tiempo.ocurrioAntes(evento.getFechaYHora())) {
 				int i = getRandomNumber(1, 10);
 				if(i%2==0) {
@@ -109,20 +119,6 @@ public class BootstrapDataImpl implements BootstrapData{
 		return eventos2;
 	}
 
-	@Override
-	public Chef crearChefBD() {
-		nuevoChef = new Chef();
-		nuevoChef.setIdChef(UUID.randomUUID());
-		nuevoChef.setNombre(BootstrapData.NOMBRES[getRandomNumber(0, 90)]);
-		nuevoChef.setEspecialidad("Este bot cocina rico");
-		nuevoChef.setEventos(listarEventos());
-		ListadoYBusquedaImpl.listado.mapearChef(nuevoChef);
-		System.out.println("Chef añadido con éxito.");
-		System.out.println(nuevoChef.toString());
-		mostrarEventos(nuevoChef);
-		return nuevoChef;
-	}
-	
 	private void mostrarEventos(Chef chef) {
 		System.out.println("Eventos en los que participa:");
 		for(Evento evento : chef.getEventos()) {

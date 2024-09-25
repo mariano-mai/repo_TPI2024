@@ -4,7 +4,9 @@ package ar.com.mariano.tpi.service.menu.impl;
 
 import java.util.Scanner;
 
+import ar.com.mariano.tpi.service.archivos.impl.ArchivosGastronomiaImpl;
 import ar.com.mariano.tpi.service.listado.impl.ListadoYBusquedaImpl;
+import ar.com.mariano.tpi.service.listado.listado.impl.ListadoInterfaceImpl;
 import ar.com.mariano.tpi.service.menu.MenuService;
 
 
@@ -24,7 +26,7 @@ public class MenuServiceImpl implements MenuService {
 							   "3- Gestionar Chefs.\n"+
 							   "4- Gestionar Reseñas.\n"+
 							   "5- Mostrar eventos próximos.\n"+
-							   "6- opcion 6.\n"+
+							   "6- Exportar Archivo.\n"+
 							   "0- salir.");
 			opcion = sc.nextInt();
 			switch(opcion) {
@@ -45,7 +47,7 @@ public class MenuServiceImpl implements MenuService {
 					ListadoYBusquedaImpl.listado.listadoCronologico(ListadoYBusquedaImpl.listado.getEventos());
 					break;
 				case 6:
-					//exportar archivo
+					ArchivosGastronomiaImpl.archivo.exportarArchivos(ListadoInterfaceImpl.eventos);
 					break;
 				default:
 			}

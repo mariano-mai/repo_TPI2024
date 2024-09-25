@@ -1,14 +1,15 @@
 package ar.com.mariano.tpi.service.menu.impl;
 
 import ar.com.mariano.tpi.bootstrap.impl.BootstrapDataImpl;
-import ar.com.mariano.tpi.service.listado.impl.ListadoYBusquedaImpl;
 import ar.com.mariano.tpi.service.menu.MostrarOpciones;
+import ar.com.mariano.tpi.service.participante.ParticipanteService;
 import ar.com.mariano.tpi.service.participante.impl.ParticipanteServiceImpl;
 import ar.com.mariano.tpi.utils.impl.ScannerServiceImpl;
 
 public class MostrarOpcionesParticipantes implements MostrarOpciones {
 	
 	public static MostrarOpciones opcParticipantes = new MostrarOpcionesParticipantes();
+	ParticipanteService partiServ = new ParticipanteServiceImpl();
 
 	@Override
 	public void mostrarOpciones() {
@@ -19,16 +20,17 @@ public class MostrarOpcionesParticipantes implements MostrarOpciones {
 			opcion = ScannerServiceImpl.scannerService.entradaDeNumero();
 			switch(opcion) {
 				case 1:
-					ParticipanteServiceImpl.parti.crearParticipante();
+					partiServ.crearParticipante();
 					break;
 				case 2:
-					ParticipanteServiceImpl.parti.inscribir();
+					partiServ.inscribir();
 					break;
 				case 3:
 					BootstrapDataImpl.bootStrap.crearParticipanteBD();
 					break;
 				case 4:
-					ParticipanteServiceImpl.parti.remover(ListadoYBusquedaImpl.listado.buscarParticipante(ListadoYBusquedaImpl.listado.getParticipantes()));
+					partiServ.remover();
+					//partiServ.remover(ListadoYBusquedaImpl.listado.buscarParticipante(ListadoYBusquedaImpl.listado.getParticipantes()));
 					break;
 				default:
 			}

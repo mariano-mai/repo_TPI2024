@@ -5,7 +5,10 @@ import java.util.UUID;
 
 import ar.com.mariano.tpi.domain.Evento;
 import ar.com.mariano.tpi.service.evento.EventoService;
-import ar.com.mariano.tpi.service.listado.impl.ListadoYBusquedaImpl;
+import ar.com.mariano.tpi.service.evento.busquedaevento.impl.BusquedaEventoImpl;
+import ar.com.mariano.tpi.service.listado.listado.impl.ListadoInterfaceImpl;
+//import ar.com.mariano.tpi.service.listado.impl.ListadoYBusquedaImpl;
+import ar.com.mariano.tpi.service.listado.mapeo.impl.MapeoInterfaceImpl;
 import ar.com.mariano.tpi.utils.impl.ScannerServiceImpl;
 
 public class EventoServiceImpl implements EventoService {
@@ -18,14 +21,16 @@ public class EventoServiceImpl implements EventoService {
 		nuevoEvento.setIdEvento(UUID.randomUUID());
 		System.out.println("NOMBRE DEL EVENTO: ");
 		nuevoEvento.setNombre(ScannerServiceImpl.scannerService.entradaDeTexto().toUpperCase());
-		nuevoEvento.setFechaYHora(hora());
+		nuevoEvento.setFechaYHora(setHora());
 		System.out.println("UBICACIÓN DEL EVENTO: ");
 		nuevoEvento.setUbicacion(ScannerServiceImpl.scannerService.entradaDeTexto());
 		System.out.println("DESCRIPCIÓN DEL EVENTO: ");
 		nuevoEvento.setDescripcion(ScannerServiceImpl.scannerService.entradaDeTexto());
 		System.out.println("CANTIDAD DE PARTICIPANTES: ");
 		nuevoEvento.setCapacidad(ScannerServiceImpl.scannerService.entradaDeNumero());
-		ListadoYBusquedaImpl.listado.mapearEvento(nuevoEvento);
+		MapeoInterfaceImpl.mapeo.mapearEvento(nuevoEvento);
+		ListadoInterfaceImpl.listados.listarEventos(nuevoEvento);
+		//ListadoYBusquedaImpl.listado.mapearEvento(nuevoEvento);
 		System.out.println("Evento creado por éxito.");
 		System.out.println(nuevoEvento.toString());
 		return nuevoEvento;
@@ -33,11 +38,15 @@ public class EventoServiceImpl implements EventoService {
 
 	@Override
 	public void modificarEvento() {
-		// TODO Auto-generated method stub
+		modificarEvento(BusquedaEventoImpl.buscaEventos.buscarEvento());
 		
 	}
 	
-	private LocalDateTime hora() {
+	private void modificarEvento(Evento evento) {
+		evento.setFechaYHora(setHora());
+	}
+	
+	private LocalDateTime setHora() {
 		System.out.println("INGRESE NÚMERO DE DÍA: ");
 		int dia = ScannerServiceImpl.scannerService.entradaDeNumero();
 		System.out.println("INGRESE NÚMERO DE MES: ");
