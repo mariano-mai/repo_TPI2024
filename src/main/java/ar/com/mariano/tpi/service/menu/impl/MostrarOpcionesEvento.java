@@ -1,7 +1,7 @@
 package ar.com.mariano.tpi.service.menu.impl;
 
+import ar.com.mariano.tpi.service.evento.busquedaevento.impl.BusquedaEventoImpl;
 import ar.com.mariano.tpi.service.evento.impl.EventoServiceImpl;
-import ar.com.mariano.tpi.service.listado.impl.ListadoYBusquedaImpl;
 import ar.com.mariano.tpi.service.menu.MostrarOpciones;
 import ar.com.mariano.tpi.utils.impl.ScannerServiceImpl;
 
@@ -21,10 +21,12 @@ public class MostrarOpcionesEvento implements MostrarOpciones{
 					EventoServiceImpl.eventoService.crearEvento();
 					break;
 				case 2:
-					ListadoYBusquedaImpl.listado.gestionarEvento(ListadoYBusquedaImpl.listado.buscarEvento(ListadoYBusquedaImpl.listado.getEventos()));
+					EventoServiceImpl.eventoService.modificarEvento();
+					//EventoServiceImpl.eventoService.modificarEvento(BusquedaInterfaceImpl.busca.buscarEvento(MapeoInterfaceImpl.getEventos()));
 					break;
 				case 3:
-					System.out.println(ListadoYBusquedaImpl.listado.buscarEvento(ListadoYBusquedaImpl.listado.getEventos()).toString());
+					System.out.println(BusquedaEventoImpl.buscaEventos.buscarEvento().toString());
+					//System.out.println(BusquedaInterfaceImpl.busca.buscarEvento(MapeoInterfaceImpl.getEventos()).toString());
 					break;
 				default:
 			}

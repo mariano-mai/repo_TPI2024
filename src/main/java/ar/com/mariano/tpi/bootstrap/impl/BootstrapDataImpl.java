@@ -9,6 +9,7 @@ import ar.com.mariano.tpi.bootstrap.BootstrapData;
 import ar.com.mariano.tpi.domain.Chef;
 import ar.com.mariano.tpi.domain.Evento;
 import ar.com.mariano.tpi.domain.Participante;
+import ar.com.mariano.tpi.service.evento.mapeoevento.impl.MapeoEventoImpl;
 import ar.com.mariano.tpi.service.listado.impl.ListadoYBusquedaImpl;
 import ar.com.mariano.tpi.service.listado.listado.impl.ListadoInterfaceImpl;
 import ar.com.mariano.tpi.utils.impl.TiemposImpl;
@@ -36,6 +37,7 @@ public class BootstrapDataImpl implements BootstrapData{
 			nuevoEvento.setFechaYHora(hora());
 			nuevoEvento.setUbicacion(generarDireccion());
 			nuevoEvento.setDescripcion("descripción de este evento");
+			MapeoEventoImpl.eventos.put(nuevoEvento.getIdEvento(), nuevoEvento);
 			ListadoYBusquedaImpl.listado.mapearEvento(nuevoEvento);
 			ListadoInterfaceImpl.listados.listarEventos(nuevoEvento);
 			eventos.add(nuevoEvento);
